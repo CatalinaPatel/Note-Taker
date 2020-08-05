@@ -4,19 +4,18 @@ const fs = require("fs");
 const { dirname } = require("path");
 
 const app = express();
-const port 8080;
-const mainDir = path.join(_dirname, "/public'");
+const port = 8080;
 
 app.use(express.static("pubic"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/notes", function (req, res) {
-    res.sendFile(path.join(mainDir, "notes.html"));
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
 app.get("/api/notes", function (req, res) {
-    res.sendFile(path.join(dirname, "db/db.json"));
+    res.sendFile(path.join(__dirname, "db/db.json"));
 });
 
 app.get("/api/notes/id", function (req, res) {
@@ -25,7 +24,7 @@ app.get("/api/notes/id", function (req, res) {
 });
 
 app.get("*", function (req, res) {
-    res.sendFile(path.join(mainDir, "index.html"));
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 app.post("/api/notes", function (req, res) {
